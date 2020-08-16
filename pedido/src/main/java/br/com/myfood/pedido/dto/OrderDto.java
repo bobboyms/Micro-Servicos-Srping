@@ -12,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDto {
+    private Long idMenu;
     private Long idRestaurant;
     private Long idProduct;
     private Double price;
@@ -21,3 +22,5 @@ public class OrderDto {
     }
 
 }
+
+

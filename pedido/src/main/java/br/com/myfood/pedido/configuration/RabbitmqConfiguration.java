@@ -13,19 +13,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitmqConfiguration {
 
-    @Value("${cadastro.rabbitmq.queue}")
-    String queueName;
+//    @Value("${cadastro.client.rabbitmq.queue}")
+//    String queueName;
 
     @Value("${cadastro.rabbitmq.exchange}")
     String exchange;
 
-    @Value("${cadastro.rabbitmq.routingkey}")
-    private String routingkey;
+//    @Value("${cadastro.rabbitmq.routingkey}")
+//    private String routingkey;
 
-    @Bean
-    Queue queue() {
-        return QueueBuilder.nonDurable(queueName).build();
-    }
+//    @Bean
+//    Queue queue() {
+//        return QueueBuilder.nonDurable(queueName).build();
+//    }
 
     @Bean
     public Exchange declareExchange() {
@@ -34,11 +34,11 @@ public class RabbitmqConfiguration {
                 .build();
     }
 
-    @Bean
-    @Autowired
-    public Binding binding(Queue queue, DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(routingkey);
-    }
+//    @Bean
+//    @Autowired
+//    public Binding binding(Queue queue, DirectExchange exchange) {
+//        return BindingBuilder.bind(queue).to(exchange).with(routingkey);
+//    }
 
     @Bean
     @Autowired

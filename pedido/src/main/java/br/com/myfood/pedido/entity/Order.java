@@ -15,6 +15,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(name = "menu_id", nullable = false)
+    private Long idMenu;
+
     @Column(name = "restaurant_id", nullable = false)
     private Long idRestaurant;
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ClientMessage {
 
-    @RabbitListener(queues = {"${cadastro.rabbitmq.queue}"})
+    @RabbitListener(queues = {"${cadastro.client.rabbitmq.queue}"})
     public void receive(@Payload Client client) {
         System.out.println(client);
     }
