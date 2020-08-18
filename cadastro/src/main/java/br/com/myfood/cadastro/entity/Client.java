@@ -1,6 +1,7 @@
 package br.com.myfood.cadastro.entity;
 
 import br.com.myfood.cadastro.dto.ClientDto;
+import br.com.myfood.cadastro.dto.ClientOrderDto;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 
@@ -14,7 +15,6 @@ public class Client {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String name;
-    private String email;
     private String user;
     private String password;
 

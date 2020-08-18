@@ -1,5 +1,6 @@
 package br.com.myfood.cadastro.message;
 
+import br.com.myfood.cadastro.dto.MenuOrderDto;
 import br.com.myfood.cadastro.entity.Client;
 import br.com.myfood.cadastro.entity.Restaurant;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -8,26 +9,26 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RestaurantMessage {
+public class MenuSendMessage {
 
     @Value("${cadastro.rabbitmq.exchange}")
     String exchange;
 
-    @Value("${cadastro.restaurant.rabbitmq.routingkey}")
+    @Value("${cadastro.menu.rabbitmq.routingkey}")
     private String routingkey;
 
     private final RabbitTemplate rabbitTemplate;
 
     @Autowired
-    public RestaurantMessage(RabbitTemplate rabbitTemplate) {
+    public MenuSendMessage(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void sendMessage(Restaurant restaurant) {
-        System.out.println(restaurant);
+    public void sendMessage(MenuOrderDto menuOrderDto) {
+        System.out.println(menuOrderDto);
         System.out.println(exchange);
         System.out.println(routingkey);
-        rabbitTemplate.convertAndSend(exchange, routingkey, restaurant);
+        rabbitTemplate.convertAndSend(exchange, routingkey, menuOrderDto);
     }
 
 }
