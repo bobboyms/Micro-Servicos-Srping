@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class ClientOrderDto {
 
-    private Long id;
     private String name;
+    private Long idClient;
 
 }

@@ -11,8 +11,8 @@ import org.modelmapper.ModelMapper;
 @ToString
 public class ClientOrderDto {
 
-    private Long id;
     private String name;
+    private Long idClient;
 
     public static ClientOrderDto create(Client client) {
         return new ModelMapper().map(client, ClientOrderDto.class);

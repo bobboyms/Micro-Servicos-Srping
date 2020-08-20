@@ -22,7 +22,18 @@ public class MenuReceiveMessage {
     @RabbitListener(queues = {"${cadastro.menu.rabbitmq.queue}"})
     public void receive(@Payload MenuOrderDto menuOrderDto) {
         System.out.println(menuOrderDto);
-        menuRepository.save(Menu.create(menuOrderDto));
+
+        final Menu menu = new Menu();
+        menu.setIdMenu(menuOrderDto.getIdMenu());
+        menu.setIdRestaurant(menuOrderDto.getIdRestaurant());
+        menu.setName(menuOrderDto.getName());
+        menu.setPrice(menuOrderDto.getPrice());
+
+        System.out.println(menu);
+
+        menuRepository.save(menu);
+
+        System.out.println(menu);
     }
 
 }

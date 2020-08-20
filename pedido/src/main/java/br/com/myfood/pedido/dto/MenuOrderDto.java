@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class MenuOrderDto {
 
-    private Long id;
+    private Long idMenu;
     private String name;
     private Double price;
     private Long idRestaurant;

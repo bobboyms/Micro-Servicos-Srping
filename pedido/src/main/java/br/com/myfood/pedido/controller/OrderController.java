@@ -5,14 +5,11 @@ import br.com.myfood.pedido.entity.Order;
 import br.com.myfood.pedido.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/order")
@@ -31,13 +28,23 @@ public class OrderController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity newOrder(OrderDto orderDto) {
+    public ResponseEntity newOrder(@RequestBody OrderDto orderDto) {
+
         try {
 
-            Order order = orderService.saveOrder(Order.create(orderDto));
-            URI uri = gerUri(order.getId());
+            System.out.println(orderDto);
 
-            return ResponseEntity.created(uri).body(order.getId());
+            final Order order = new Order();
+            order.setDateOrder(new Date());
+            order.setIdClient(orderDto.getIdClient());
+            order.setIdMenu(orderDto.getIdMenu());
+            order.setIdRestaurant(orderDto.getIdRestaurant());
+            order.setPrice(orderDto.getPrice());
+
+            final Order newOrder = orderService.saveOrder(order);
+            final URI uri = gerUri(newOrder.getId());
+
+            return ResponseEntity.created(uri).body(newOrder.getId());
 
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e);
