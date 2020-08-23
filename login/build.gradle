@@ -24,24 +24,29 @@ ext {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-amqp'
-	implementation 'org.springframework.boot:spring-boot-starter-cache'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-	//converte DTO para Entity
-	compile 'org.modelmapper:modelmapper:2.3.5'
+	testImplementation 'org.springframework.security:spring-security-test'
 
 	compile 'io.jsonwebtoken:jjwt:0.9.1'
 
-	testImplementation 'org.springframework.amqp:spring-rabbit-test'
+	// https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.11'
+	compile group: 'com.sun.xml.bind', name: 'jaxb-core', version: '2.2.11'
+	compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.2.11'
+
+//			<dependency>
+//			<groupid>com.sun.xml.bind</groupid>
+//  <artifactid>jaxb-impl</artifactid>
+//	<version>2.2.11</version>
+//</dependency>
+
 }
 
 dependencyManagement {
